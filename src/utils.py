@@ -55,6 +55,7 @@ def get_args_parser():
     parser.add_argument("--exp", default=False, action="store_true")
     parser.add_argument('--exp_dir', required=False, type=str)
     parser.add_argument("--ckpt_path", type=str)
+    parser.add_argument('--split', required=False, type=str, default="all")
     return parser
 
 def get_transform_wo_crop(data_config):
