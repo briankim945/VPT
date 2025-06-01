@@ -196,12 +196,9 @@ def run_extract_features(args):
     data_config = timm.data.resolve_model_data_config(model)
     transform = get_transform_wo_crop(data_config)
 
-    if not args.flip:
-        train_dataset = datasets.ImageFolder(os.path.join(args.data_dir, 'train'), transform=transform)
-    else:
-        train_dataset = datasets.ImageFolder(os.path.join(args.data_dir, 'train_flip'), transform=transform)
-    test_dataset = datasets.ImageFolder(os.path.join(args.data_dir, 'test'), transform=transform)
-    val_dataset = datasets.ImageFolder(os.path.join(args.data_dir, 'val'), transform=transform)
+    train_dataset = PerspectiveDataset(args.data_dir, transform=transform, split='train', task=args.task, return_path=True)
+    test_dataset = PerspectiveDataset(args.data_dir, transform=transform, split='test', task=args.task, return_path=True)
+    val_dataset = PerspectiveDataset(args.data_dir, transform=transform, split='val', task=args.task, return_path=True)
     human_dataset = PerspectiveDataset(Path(args.data_dir).parent, transforms=transform, split='human', task=args.task, return_path=True)
     
     train_loader = DataLoader(train_dataset, batch_size=args.extract_batch_size, num_workers=args.num_workers, pin_memory=True, drop_last=False)
