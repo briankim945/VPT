@@ -225,7 +225,9 @@ def run_linear_probe(args):
                                 "learning_rate": args.learning_rate,
                                 "architecture": args.model_name,
                                 "epochs": args.epochs,
-                                } )
+                                },
+                                reinit='create_new'
+        )
     device = torch.device(f'cuda:{args.gpu_id}')
 
     train_features, train_labels, train_paths, \
