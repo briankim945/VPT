@@ -232,9 +232,9 @@ def run_linear_probe(args):
     val_features, val_labels, val_paths, \
     human_features, human_labels, human_img_paths = run_extract_features(args)
         
-    train_feat_dataset = FeaturesDataset(train_features, train_labels)
-    test_feat_dataset = FeaturesDataset(test_features, test_labels)
-    val_feat_dataset = FeaturesDataset(val_features, val_labels)
+    train_feat_dataset = FeaturesDataset(train_features, train_labels, train_paths)
+    test_feat_dataset = FeaturesDataset(test_features, test_labels, test_paths)
+    val_feat_dataset = FeaturesDataset(val_features, val_labels, val_paths)
     human_feat_dataset = FeaturesDataset(human_features, human_labels, human_img_paths)
     
     train_feat_loader = DataLoader(train_feat_dataset, batch_size=args.batch_size,
