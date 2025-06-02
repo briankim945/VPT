@@ -77,8 +77,8 @@ def train_linear_probe(model, train_loader, test_loader, val_loader, human_loade
             epoch_acc.append(acc)
             epoch_loss.append(loss.item())
         with torch.no_grad():
-            val_acc, val_loss, _ = evaluate_linear_probe(model, val_loader, criterion, device, True, args)
-            test_acc, test_loss, _ = evaluate_linear_probe(model, test_loader, criterion, device, True, args)
+            val_acc, val_loss = evaluate_linear_probe(model, val_loader, criterion, device, False, args)
+            test_acc, test_loss = evaluate_linear_probe(model, test_loader, criterion, device, False, args)
             human_acc, human_loss, human_record = evaluate_linear_probe(model, human_loader, criterion, device, True, args)
             train_acc = sum(epoch_acc)/float(len(epoch_acc))
             if val_acc > best_acc_val:
@@ -125,11 +125,7 @@ def evaluate_linear_probe(model, data_loader, criterion, device, return_record, 
     preds_list_logits = []
     img_path_list = []
     for i, batch in enumerate(data_loader):
-        if return_record:
-            features, labels, img_path = batch
-        else:
-            features, labels = batch
-            img_path =  None
+        features, labels, img_path = batch
         features = features.to(device)
         labels = labels.float().to(device)
         labels = torch.unsqueeze(labels, 1)
@@ -161,11 +157,7 @@ def predict_linear_probe(model, data_loader, criterion, device, return_record):
     preds_list_logits = []
     img_path_list = []
     for i, batch in enumerate(data_loader):
-        if return_record:
-            features, labels, img_path = batch
-        else:
-            features, labels = batch
-            img_path =  None
+        features, labels, img_path = batch
         features = features.to(device)
         labels = labels.float().to(device)
         labels = torch.unsqueeze(labels, 1)
