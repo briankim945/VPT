@@ -64,7 +64,7 @@ def train_linear_probe(model, train_loader, test_loader, val_loader, human_loade
         epoch_acc = []
         epoch_loss = []
         for i, batch in enumerate(train_loader):
-            features, labels = batch
+            features, labels, _ = batch
             features = features.to(device)
             labels = labels.float().to(device)
             labels = torch.unsqueeze(labels, 1)
