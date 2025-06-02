@@ -209,13 +209,12 @@ def run_extract_features(args):
     
 def run_linear_probe(args):
     if args.wandb:
-        wandb_run = wandb.init(project='gs-perception-linear-probe', 
+        wandb_run = wandb.init(project='gs-perception-linear-probe-return-preds', 
                             config={                   
                                 "learning_rate": args.learning_rate,
                                 "architecture": args.model_name,
                                 "epochs": args.epochs,
-                                },
-                                reinit='create_new'
+                                }
         )
     device = torch.device(f'cuda:{args.gpu_id}')
 
