@@ -88,10 +88,10 @@ def train_linear_probe(model, train_loader, test_loader, val_loader, human_loade
                 best_acc_human = human_acc
 
                 # Predictions and labels
-                best_train_preds, best_train_labels = predict_linear_probe(model, train_loader, criterion, device, False)
-                best_test_preds, best_test_labels = predict_linear_probe(model, train_loader, criterion, device, False)
-                best_val_preds, best_val_labels = predict_linear_probe(model, train_loader, criterion, device, False)
-                best_human_preds, best_human_labels, _ = predict_linear_probe(model, train_loader, criterion, device, True)
+                best_train_preds, best_train_labels = predict_linear_probe(model, train_loader, criterion, device, True)
+                best_test_preds, best_test_labels = predict_linear_probe(model, test_loader, criterion, device, True)
+                best_val_preds, best_val_labels = predict_linear_probe(model, val_loader, criterion, device, True)
+                best_human_preds, best_human_labels, _ = predict_linear_probe(model, human_loader, criterion, device, True)
 
                 if args.task == 'depth':
                     file_name = "preds_depth"
