@@ -57,6 +57,7 @@ def get_args_parser():
     parser.add_argument("--ckpt_path", type=str)
     parser.add_argument('--split', required=False, type=str, default="all")
     parser.add_argument("--early_stop", default=False, action="store_true")
+    parser.add_argument("--wandb_project", required=False, type = str, default='gs-perception-linear-probe', help='W&B project name')
     return parser
 
 def get_transform_wo_crop(data_config):

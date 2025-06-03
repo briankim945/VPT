@@ -160,7 +160,7 @@ def run_extract_features(args):
     
 def run_linear_probe(args):
     if args.wandb:
-        wandb_run = wandb.init(project='gs-perception-linear-probe', 
+        wandb_run = wandb.init(project=args.wandb_project, 
                             config={                   
                                 "learning_rate": args.learning_rate,
                                 "architecture": args.model_name,
