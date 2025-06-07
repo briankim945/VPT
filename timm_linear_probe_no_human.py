@@ -17,10 +17,10 @@ if __name__ == "__main__":
     timm_models_csv = os.path.join('assets', 'timm_models.csv')
     timm_results_csv = os.path.join('assets', 'results-imagenet.csv')
     if args.task == 'perspective':
-        log_file = f'logs/perspective_results.json'
+        log_file = f'logs/perspective_results_nh.json'
     else:
         # log_file = f'logs/depth_results_{args.split}.json'
-        log_file = f'logs/depth_results.json'
+        log_file = f'logs/depth_results_nh.json'
         
     df = pd.read_csv(timm_models_csv)
     timm_df = pd.read_csv(timm_results_csv)
