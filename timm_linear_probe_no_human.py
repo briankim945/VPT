@@ -22,7 +22,7 @@ if __name__ == "__main__":
         # log_file = f'logs/depth_results_{args.split}.json'
         log_file = f'logs/depth_results.json'
         
-    # df = pd.read_csv(timm_models_csv)
+    df = pd.read_csv(timm_models_csv)
     timm_df = pd.read_csv(timm_results_csv)
     num_models = len(timm_df.index)
     if args.split == 'first':
@@ -30,14 +30,14 @@ if __name__ == "__main__":
     elif args.split == 'second':
         models_range = range(int(len(df.index)/2), len(df.index))
     else:
-        models_range = range(len(timm_df.index))
+        models_range = range(len(df.index))
     for index in models_range:
         torch.cuda.empty_cache()
         with open(log_file, 'r') as f:
             perspective_results = json.load(f)
         #print(df['model'][index], df['top1'][index], df['img_size'][index])
-        # model_name = df['model_name'][index]
-        model_name = timm_df['model'][index]
+        model_name = df['model_name'][index]
+        # model_name = timm_df['model'][index]
         #img_size = df['img_size'][index]
         if not model_name in timm_df['model'].values:
             continue
