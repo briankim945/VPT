@@ -20,7 +20,7 @@ if __name__ == "__main__":
         log_file = f'logs/perspective_results_nh.json'
     else:
         # log_file = f'logs/depth_results_{args.split}.json'
-        log_file = f'logs/depth_results_nh.json'
+        log_file = f'logs/{args.task}_results_nh.json'
         
     df = pd.read_csv(timm_models_csv)
     timm_df = pd.read_csv(timm_results_csv)

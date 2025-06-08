@@ -184,7 +184,7 @@ def run_linear_probe(args):
     if args.task == 'perspective':
         log_file = f'logs/perspective_results_nh.json'
     else:
-        log_file = f'logs/depth_results_nh.json'
+        log_file = f'logs/{args.task}_results_nh.json'
         
     with open(log_file, 'r') as f:
         results = json.load(f)
