@@ -10,7 +10,7 @@ import time
 import torch
 import shutil
 
-huggingface_path = None
+huggingface_path = "/users/bkim53/.cache/huggingface/hub"
 
 if __name__ == "__main__":
     args = get_args_parser().parse_args()
